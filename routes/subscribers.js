@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
   });
   try {
     const newSubscriber = await subscriber.save();
+    console.log("Added user");
     res.status(201).json(newSubscriber);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -44,6 +45,7 @@ router.patch("/:id", getSubscriber, async (req, res) => {
 
   try {
     const updatedSubscriber = await res.subscriber.save();
+    console.log("Alterd user");
     res.json(updatedSubscriber);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -54,6 +56,7 @@ router.patch("/:id", getSubscriber, async (req, res) => {
 router.delete("/:id", getSubscriber, async (req, res) => {
   try {
     await res.subscriber.remove();
+    console.log("Deleted user");
     res.json({ message: "Deleted Subscriber" });
   } catch (err) {
     res.status(500).json({ message: err.message });
