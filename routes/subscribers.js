@@ -3,22 +3,8 @@ const subscriber = require("../models/subscriber");
 const router = express.Router();
 const Subscriber = require("../models/subscriber");
 
-//-------------------------------------------
-// const app = require("express")();
-
-// app.get("/", (req, res) => res.json({ message: "Docker is easy 🐳" }));
-
-// const port = process.env.PORT || 8080;
-
-// app.listen(port, () =>
-//   console.log(`app listening on http://localhost:${port}`)
-// );
-//----------------------------
-
 //Getting all
 router.get("/", async (req, res) => {
-  // res.send("Hello World");
-
   try {
     const subscribers = await Subscriber.find();
     res.json(subscribers);

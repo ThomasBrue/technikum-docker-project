@@ -10,21 +10,9 @@ COPY . .
 
 ENV PORT=8080
 
+# MongoDB Connection via Docker
+ENV DATABASE_URL=mongodb://mongo:27017/subscribers
+
 EXPOSE 8080
 
 CMD [ "npm", "start" ]
-
-
-# FROM node:10
-
-# WORKDIR /usr/src/app
-
-# COPY package*.json ./
-
-# RUN npm install
-
-# COPY . .
-
-# EXPOSE 3000
-
-# CMD ["npm", "start"]

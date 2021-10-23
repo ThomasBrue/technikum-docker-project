@@ -5,8 +5,12 @@ const app = express();
 
 const mongoose = require("mongoose");
 
-// mongoose.connect(process.env.DATABASE_URL);
-mongoose.connect(process.env.DATABASE_URL_DOCKER);
+console.log(`Provided ENV parameter: ${process.env.DATABASE_URL} `);
+
+const dbConnection =
+  process.env.DATABASE_URL || "mongodb://localhost/subscribers";
+
+mongoose.connect(dbConnection);
 
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
@@ -18,9 +22,7 @@ app.use(express.json());
 const subscribersRouter = require("./routes/subscribers");
 app.use("/subscribers", subscribersRouter);
 
-app.get("/", (req, res) => res.json({ message: "Docker is easy 🐳 Jimmy" }));
-
-// app.listen(3000, () => console.log("Server Started!"));
+app.get("/", (req, res) => res.json({ message: "Docker-Demo-App is running" }));
 
 const port = process.env.PORT || 8080;
 
